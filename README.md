@@ -99,6 +99,15 @@ Hello Laszlo!
 If you use this function, then the necessary header
 file (`prog1.h`) will be auto-included.
 
+## Notes
+
+When I generate the C source code, I add some special
+comments (e.g. `// tmp`, `// def`). I need those
+comments when I read the modified source code. When
+you edit the C code with a text editor, I need to parse
+and re-read the whole source code. These special comments
+are there to facilitate the parsing. **So don't delete these comments!**
+
 ## Installation
 
 The program has just one external dependency, the [yachalk](https://github.com/bluenote10/yachalk) library. If you have it installed via
