@@ -84,6 +84,21 @@ It's also possible to check for memory leaks with `valgrind`:
 ...
 ```
 
+To simplify reading a text from the keyboard,
+you can use a "built-in" function called `get_string()`:
+
+```text
+>>> string s = get_string("Name: ")
+>>> printf("Hello %s!\n", s)
+>>>
+>>> _run
+Name: Laszlo
+Hello Laszlo!
+```
+
+If you use this function, then the necessary header
+file (`prog1.h`) will be auto-included.
+
 ## Installation
 
 The program has just one external dependency, the [yachalk](https://github.com/bluenote10/yachalk) library. If you have it installed via
