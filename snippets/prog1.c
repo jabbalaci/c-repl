@@ -11,8 +11,8 @@
 #define BUFSIZE 1024
 
 /**
- * Ez egy dinamikusan lefoglalt sztringet ad vissza,
- * amit a hívó oldalon majd valamikor fel kell szabadítani.
+ * It returns a dynamically allocated string that
+ * must be freed on the caller's side.
  */
 string get_string(const char* prompt)
 {
