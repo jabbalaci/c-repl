@@ -110,15 +110,20 @@ are there to facilitate the parsing. **So don't delete these comments!**
 
 ## Installation
 
-The program has just one external dependency, the [yachalk](https://github.com/bluenote10/yachalk) library. If you have it installed via
-your package manager (e.g., under Manjaro: `yay -S python-yachalk`), then just start `./crepl.py` .
-
-Or, you can also set up a virtual environment, install
-"yachalk" inside the virt. env., and then start `./crepl.py` .
-
 I highly encourage using the [uv](https://docs.astral.sh/uv/) package manager. Then, it's enough
 to just start `./start.sh`, which will **(1)** create
 a virt. env. for you, and then **(2)** start the project.
+
+For Debian-based distros, I made an installer script (`setup.sh`).
+Before executing it, verify its content. It installs the uv
+package manager via pipx, and it also installs some external
+programs that are used by C REPL (e.g. `gcc`, `valgrind`, etc.).
+
+Once everything is installed, just start the launcher script:
+
+```shell
+$ ./start.sh
+```
 
 ## Supported Platforms
 
@@ -127,4 +132,4 @@ Tested on Linux only.
 The program uses several external Linux commands.
 They are collected in named constants at the beginning
 of the source code. Make sure that they are all installed
-on your system (e.g. `gcc`, `clang`, etc.)
+on your system (e.g. `gcc`, `valgrind`, etc.)

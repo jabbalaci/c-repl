@@ -27,13 +27,14 @@ SNIPPETS_DIR = os.path.join(ROOT, "snippets")
 
 CC = "gcc"  # in package 'gcc'
 CLANG_FORMAT = "clang-format"  # in package 'clang'
-CAT = "bat"  # in package 'bat' ; can be replaced with "cat" too
+# under Ubuntu, it's "batcat"; under Manjaro, it's "bat"; "cat" is the fallback option
+CAT = "batcat,bat,cat"
 EDITOR = "micro"  # in package 'micro' ; can be replaced with vim/nvim too
 PYTHON3 = "python3"  # in package 'python'
 VALGRIND = "valgrind"  # in package 'valgrind'
 
 # verify upon startup if these programs are available:
-REQUIRED_COMMANDS = [CC, CLANG_FORMAT, CAT, EDITOR, PYTHON3, VALGRIND]
+REQUIRED_COMMANDS = [CC, CLANG_FORMAT, EDITOR, PYTHON3, VALGRIND]
 ##############################################################################
 
 
@@ -75,6 +76,16 @@ def remove_leading_empty_strings(li: list[str]) -> None:
 def remove_trailing_empty_strings(li: list[str]) -> None:
     while li and li[-1].strip() == "":
         li.pop()
+
+
+def cat_command() -> str:
+    options = CAT.split(",")
+    for opt in options:
+        if fs.which(opt):
+            return opt
+        #
+    #
+    return "cat"
 
 
 ##############################################################################
@@ -285,9 +296,12 @@ class Source:
         """
         Pretty print with "bat".
         """
+        binary = cat_command()
+        cmd = "cat main.c"
+        if "bat" in binary:
+            cmd = f"{binary} -p main.c"
         self.save_and_format_source_code()
         with ChDir(TMP_DIR):
-            cmd = f"{CAT} -p main.c"
             os.system(cmd)
 
     def save_source_code(self) -> None:
