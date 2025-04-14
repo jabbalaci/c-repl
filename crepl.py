@@ -282,7 +282,7 @@ class Source:
         self.add_main_body(lines)
         self.add_main_footer(lines)
         #
-        return "\n".join(lines)
+        return "\n".join(lines) + "\n"
 
     def get_lines(self) -> list[str]:
         return self.put_together().splitlines()
